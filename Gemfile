@@ -33,7 +33,7 @@ group :doc do
   gem 'sdoc', require: false
 end
 
-gem 'qiniu-rs'
+gem "qiniu-rs", "~> 3.4.5"
 gem "jquery-fileupload-rails", "~> 0.4.1"
 gem "zurb-foundation", "~> 4.3.1"
 

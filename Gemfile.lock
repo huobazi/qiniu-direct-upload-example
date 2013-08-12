@@ -58,7 +58,7 @@ GEM
     multi_json (1.7.9)
     pg (0.15.1)
     polyglot (0.3.3)
-    qiniu-rs (3.4.2)
+    qiniu-rs (3.4.5)
       json (~> 1.7)
       mime-types (~> 1.19)
       rest-client (~> 1.6)
@@ -127,7 +127,7 @@ DEPENDENCIES
   jquery-fileupload-rails (~> 0.4.1)
   jquery-rails
   pg
-  qiniu-rs
+  qiniu-rs (~> 3.4.5)
   rails (= 4.0.0)
   sass-rails (~> 4.0.0)
   sdoc
