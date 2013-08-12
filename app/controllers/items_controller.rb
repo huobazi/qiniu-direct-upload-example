@@ -10,5 +10,7 @@ class ItemsController < ApplicationController
   end
 
   def create
+    render json: params
   end
+
 end
