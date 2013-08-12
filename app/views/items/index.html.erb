@@ -1,0 +1,12 @@
+<h1>Ajax Upload With Qiniu-Direct-Upload</h1>
+<form method="post" action="http://up.qiniu.com/" enctype="multipart/form-data">
+  <input name="key" type="hidden" value="photographs/<%#{SecureRandom.hex}%>/${fname}>">
+  <input name="x:custom_field_name" type="hidden" value="xxx">
+  <input name="token" type="hidden" value="<%= @upload_token %>">
+  <input name="file" type="file" />
+</form>
+<div id ="items-upload-response">
+  <pre id="response">
+
+  </pre>
+</div>
