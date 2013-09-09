@@ -26,11 +26,11 @@ $(function () {
     multipart: true,
     url: 'http:://up.qiniu.com/',
     formData: function(form){
+
       var data = form.serializeArray();
       var fh = this.files[0];
       var fileUniqKey = '<%= "photographs/#{SecureRandom.hex}" %>' + ':' + generate_random_string(20) + ":"+ fh.name ;
-      var keyParams = 'key='+fileUniqKey
-      data.push({name: 'key', value: keyParams});
+      data.push({name: 'key', value: fileUniqKey});
 
       return data;
     }
