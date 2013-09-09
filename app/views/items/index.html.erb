@@ -1,4 +1,4 @@
-<form id="fileupload" method="post" action="http://up.qiniu.com/" enctype="multipart/form-data">
+<form id="new_item" method="post" action="http://up.qiniu.com/" enctype="multipart/form-data">
   <input name="x:custom_field_1" type="hidden" value="custom_field_1_value">
   <input name="token" type="hidden" value="<%= @upload_token %>">
   <input name="file" type="file" />
@@ -9,31 +9,9 @@
 
   </pre>
 </div>
-<script type="text/javascript">
-  // 生成一个随机字符串
-function generate_random_string(length) {
-  var chars = '0123456789abcdefghiklmnopqrstuvwxyz';
-  var sRnd = '';
-  for (var i=0; i<length; i++){
-    var randomPoz = Math.floor(Math.random() * chars.length);
-    sRnd += chars.substring(randomPoz,randomPoz+1);
-  }
-  return sRnd;
-}
-$(function () {
-  // Initialize the jQuery File Upload widget:
-  $('#fileupload').fileupload({
-    multipart: true,
-    url: 'http:://up.qiniu.com/',
-    formData: function(form){
-
-      var data = form.serializeArray();
-      var fh = this.files[0];
-      var fileUniqKey = '<%= "photographs/#{SecureRandom.hex}" %>' + ':' + generate_random_string(20) + ":"+ fh.name ;
-      data.push({name: 'key', value: fileUniqKey});
-
-      return data;
-    }
-  });
-});
+<script id="template-upload" type="text/x-tmpl">
+<div class="upload">
+  {%=o.name%}
+  <div class="progress"><div class="bar" style="width: 0%"></div></div>
+</div>
 </script>
