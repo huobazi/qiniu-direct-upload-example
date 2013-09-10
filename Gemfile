@@ -37,6 +37,8 @@ gem "qiniu-rs", "~> 3.4.5"
 gem "jquery-fileupload-rails", "~> 0.4.1"
 gem "zurb-foundation", "~> 4.3.1"
 
+gem 'better_errors', group: :development
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

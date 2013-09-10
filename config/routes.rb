@@ -4,7 +4,11 @@ QiniuDirectUploadExample::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root 'items#index'
-  resources :items, :only => [:index, :create]
+  resources :items, :only => [:index, :create] do
+    collection do
+    end
+  end
+
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

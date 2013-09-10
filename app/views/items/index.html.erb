@@ -1,16 +1,17 @@
-<form id="new_item" method="post" action="http://up.qiniu.com/" enctype="multipart/form-data">
-  <input name="x:custom_field_1" type="hidden" value="custom_field_1_value">
-  <input name="token" type="hidden" value="<%= @upload_token %>">
-  <input name="file" type="file" />
-  <input type="submit" />
-</form>
-<div id ="items-upload-response">
-  <pre id="response">
+<%= qiniu_uploader_form callback_url: items_path,
+  bucket: 'spec-test',
+  id: "photograph-uploader",
+  key: "{timestamp}-{unique-id}-#{SecureRandom.hex}-${filename}",
+custom_fields: {aaa:1,bbb:2},
+  store_path: "/photographs/#{Date.today.strftime('%Y/%m')}" do %>
+  <%= file_field_tag :file, multiple: true %>
+<% end %>
 
-  </pre>
+<div class="dropzone">
 </div>
+
 <script id="template-upload" type="text/x-tmpl">
-<div class="upload">
+  <div class="upload">
   {%=o.name%}
   <div class="progress"><div class="bar" style="width: 0%"></div></div>
 </div>
