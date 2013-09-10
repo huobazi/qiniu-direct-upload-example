@@ -15,29 +15,34 @@ $.fn.QiniuUploader = (options) ->
   $uploadForm = this
 
   settings =
-    allowedExtensions: []
-    customCallbackData: null
-    beforeAdd: null
+    customCallbackData: undefined
+    onFilesAdd: undefined
     removeProgressBarWhenCompleted: true
     removeProgressBarWhenFailed: false
-    progressBarTarget: null
-    clickSubmitTarget: null
+    progressBarId: undefined
+    buttonId: undefined
     allowMultipleFiles: true
 
   $.extend settings, options
 
+  submitButtonId =  $uploadForm.data('submit-button-id')
+  progressBarId = $uploadForm.data('progress-bar-id')
+
+  submitButton = $('#' + submitButtonId) if submitButtonId
+  progressBar = $('#' + progressBarId) if progressBarId
+
   currentFiles = []
   formsForSubmit = []
-  if settings.clickSubmitTarget
-    settings.clickSubmitTarget.click ->
+
+  if submitButton and submitButton.length > 0
+    submitButton.click ->
       form.submit() for form in formsForSubmit
       false
 
-  generate_random_string= (length) ->
-    chars = "abcdefghiklmn0123456789opqrstuvwxyz"
+  generateRandomString= (length) ->
+    chars = "abcdefghiklmno0123456789pqrstuvwxyz"
     text = ""
     i = 0
-
     while i < length
       randomPoz = Math.floor(Math.random() * chars.length)
       text += chars.substring(randomPoz, randomPoz + 1)
@@ -49,16 +54,16 @@ $.fn.QiniuUploader = (options) ->
 
       add: (e, data) ->
         file = data.files[0]
-        file.uniqueId = generate_random_string(10) + Math.random().toString(36).substr(2,16)
+        file.uniqueId = generateRandomString(10) + Math.random().toString(36).substr(2,12)
 
-        unless settings.beforeAdd and not settings.beforeAdd(file)
+        unless settings.onFilesAdd and not settings.onFilesAdd(file)
           currentFiles.push data
           if $('#template-upload').length > 0
             data.context = $($.trim(tmpl("template-upload", file)))
-            $(data.context).appendTo(settings.progressBarTarget || $uploadForm)
+            $(data.context).appendTo(progressBar || $uploadForm)
           else if !settings.allowMultipleFiles
-            data.context = settings.progressBarTarget
-          if settings.clickSubmitTarget
+            data.context = progressBar
+          if submitButton and submitButton.length > 0
             if settings.allowMultipleFiles
               formsForSubmit.push data
             else
@@ -67,7 +72,7 @@ $.fn.QiniuUploader = (options) ->
             data.submit()
 
       start: (e) ->
-        $uploadForm.trigger("qiniu_uploads_start", [e])
+        $uploadForm.trigger("qiniu_upload_start", [e])
 
       progress: (e, data) ->
         if data.context
@@ -78,7 +83,6 @@ $.fn.QiniuUploader = (options) ->
         postData = buildCallbackData $uploadForm, data.files[0], data.result
         callbackUrl = $uploadForm.data('callback-url')
         if callbackUrl
-
           $.ajax
             type: $uploadForm.data('callback-method')
             url: callbackUrl
@@ -92,7 +96,7 @@ $.fn.QiniuUploader = (options) ->
         $uploadForm.trigger("qiniu_upload_complete", [postData])
 
         currentFiles.splice($.inArray(data, currentFiles), 1) # remove that element from the array
-        $uploadForm.trigger("qiniu_uploads_complete", [postData]) unless currentFiles.length
+        $uploadForm.trigger("qiniu_upload_complete", [postData]) unless currentFiles.length
 
       fail: (e, data) ->
         content = buildCallbackData $uploadForm, data.files[0], data.result
@@ -103,12 +107,12 @@ $.fn.QiniuUploader = (options) ->
 
       formData: (form) ->
         data = form.serializeArray()
-        fileType = ""
-        if "type" of @files[0]
-          fileType = @files[0].type
-        data.push
-          name: "x:content-type"
-          value: fileType
+        #fileType = ""
+        #if "type" of @files[0]
+          #fileType = @files[0].type
+        #data.push
+          #name: "x:contentType"
+          #value: fileType
 
         key = $uploadForm.data("key")
           .replace('{timestamp}', new Date().getTime())
@@ -120,12 +124,12 @@ $.fn.QiniuUploader = (options) ->
           n if n.name == "key"
 
         if keyField.length > 0
-          keyField[0].value = @storePath + key
+          keyField[0].value = key
 
         # IE <= 9 doesn't have XHR2 hence it can't use formData
         # replace 'key' field to submit form
         unless 'FormData' of window
-          $uploadForm.find("input[name='key']").val(@storePath + key)
+          $uploadForm.find("input[name='key']").val(key)
         data
 
   buildCallbackData = ($uploadForm, file, result) ->

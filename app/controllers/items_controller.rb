@@ -3,6 +3,7 @@ class ItemsController < ApplicationController
   end
 
   def create
+    # do save the item
     render json: params
   end
 

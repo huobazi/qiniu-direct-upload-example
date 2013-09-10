@@ -2,7 +2,18 @@ module ApplicationHelper
   def qiniu_uploader_form(options = {}, &block)
     uploader = QiniuUploader.new(options)
     form_tag(uploader.action, uploader.form_options) do
-      uploader.fields.map do |name, value|
+      all_hidden_fields = {}
+      all_hidden_fields =  all_hidden_fields.merge uploader.fields
+
+      custom_hidden_fields = {}
+      uploader.custom_fields.each do |key,value|
+        custom_hidden_fields["x:#{key}"] = value
+      end
+
+      all_hidden_fields =  all_hidden_fields.reverse_merge custom_hidden_fields
+      all_hidden_fields = all_hidden_fields.reverse_merge({:ooo=>uploader.return_body})
+
+      all_hidden_fields.map do |name, value|
         hidden_field_tag(name, value)
       end.join.html_safe + capture(&block)
     end
@@ -15,6 +26,8 @@ module ApplicationHelper
         ssl: false,
         store_path: '/uploads/',
         custom_fields: {},
+        submit_button_id: nil,
+        progress_bar_id: nil,
         callback_method: "POST"
       )
     end
@@ -29,24 +42,37 @@ module ApplicationHelper
         data: {
           store_path: @options[:store_path],
           callback_url: @options[:callback_url],
-          callback_method: @options[:callback_method]
+          callback_method: @options[:callback_method],
+          submit_button_id: @options[:submit_button_id],
+          progress_bar_id: @options[:progress_bar_id]
         }.reverse_merge(@options[:data] || {})
       }
     end
 
     def fields
-      custom_hidden_fields = {}
-      @options[:custom_fields].each do |key,value|
-        custom_hidden_fields["x:#{key}"] = value
-      end
       {
-        key: @options[:key] || default_key,
+        key: key,
         token: @options[:token] || token
-      }.reverse_merge custom_hidden_fields
+      }
+    end
+
+    def custom_fields
+      @options[:custom_fields]
     end
 
     def default_key
-      "{timestamp}-{unique-id}-#{SecureRandom.hex}-${filename}"
+      "{timestamp}-{unique-id}-#{SecureRandom.hex}-{filename}"
+    end
+
+    def store_path
+      store_path = @options[:store_path]
+      store_path = '/' + store_path if store_path.slice(0, 1) != '/'
+      store_path =  store_path+ '/' if store_path.slice(-1) != '/'
+    end
+
+    def key
+      return store_path + @options[:key] if @options[:key]
+      return store_path + default_key
     end
 
     def action
@@ -54,20 +80,35 @@ module ApplicationHelper
     end
 
     def return_body
-      custom_fields = {}
-      @options[:custom_fields].each do |key,value|
-        custom_fields[key] = "$(x:#{key})"
+      fields_array = []
+      fields_array.push '"etag": $(etag)'
+      fields_array.push '"fname": $(fname)'
+      fields_array.push '"fsize": $(fsize)'
+      fields_array.push '"mimeType": $(mimeType)'
+      fields_array.push '"imageInfo": $(imageInfo)'
+      fields_array.push '"exif": $(exif)'
+      fields_array.push '"endUser": $(endUser)'
+      fields_array.push '"key": $(key)'
+
+      custom_fields_array = []
+      @options[:custom_fields].each do |k,v|
+        custom_fields_array.push '"' + k.to_s + '": $(x:'+ k.to_s + ')'
       end
-      @options[:return_body].reverse_merge custom_fields
+      custom_fields_json = '"custom_fields": {' + custom_fields_array.join(',') + '}'
+
+      fields_array.push custom_fields_json
+
+      '{'+ fields_array.join(',') +'}'
     end
 
     def token
       Qiniu::RS.generate_upload_token scope: @options[:bucket],
         escape: 1,
         expires_in: @options[:expires_in],
-        return_body: @options[:return_body],
+        return_body: return_body,
         customer: @options[:customer]
     end
+
 
   end
 end
