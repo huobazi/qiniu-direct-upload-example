@@ -4,9 +4,19 @@
 
 This the example for https://github.com/huobazi/qiniu_direct_upuloader
 
-1. Visit http://qiniu-direct-upload-example.herokuapp.com
-2. Upload a image
-3. See the javascript console
+Please see the files
+
+```
+app/controllers/items_controller.rb
+app/views/items/index.html.erb
+app/assets/javascripts/items.js.coffee
+```
+
+1. Clone the repo to your localhost
+2. Setup your Qiniu KEY to the config/initializers/tmp.rb
+3. Run
+4. Upload a image
+5. See the javascript console
 
 ## Contributing
 
