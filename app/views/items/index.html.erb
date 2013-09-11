@@ -11,7 +11,7 @@
       store_path:    "/items/#{Date.today.strftime('%Y/%m')}" do %>
 
       <div class="bars" id="progress-bar">
-        <%= file_field_tag :file, multiple: true %> You can also drag and drop files here
+        <%= file_field_tag :file, multiple: true, accept: "image/gif, image/jpeg" %> You can also drag and drop files here
       </div>
     <% end %>
   </div>

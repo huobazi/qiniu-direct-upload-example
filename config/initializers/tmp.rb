@@ -1,2 +1,2 @@
-Qiniu::RS.establish_connection! :access_key => "CsYEw1QBZAIPqp4q6wxb3s5Y6AIIuMIgGLW1MEIH",
-                                :secret_key => "avkqArZO-O3O736X_hf9-eL5CE2o-nlznwLq4Bzc"
+Qiniu::RS.establish_connection! :access_key => "QXaS_hTivIf74lUlMLhS4EGkobUU-arZ_Za5LZPH",
+                                :secret_key => "yfsXHe-dz3sJ2MGk9FwNJDImgMVCIKlSXXISNGXJ"
