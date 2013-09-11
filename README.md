@@ -10,7 +10,7 @@ Please see the files
 app/views/items/index.html.erb
 app/assets/javascripts/items.js.coffee
 app/controllers/items_controller.rb
-
+config/initializers/tmp.rb
 ```
 
 1. Clone the repo to your localhost
