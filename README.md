@@ -2,14 +2,15 @@
 
 ## How to run
 
-This the example for https://github.com/huobazi/qiniu_direct_upuloader
+This is a example for https://github.com/huobazi/qiniu_direct_upuloader
 
 Please see the files
 
 ```
-app/controllers/items_controller.rb
 app/views/items/index.html.erb
 app/assets/javascripts/items.js.coffee
+app/controllers/items_controller.rb
+
 ```
 
 1. Clone the repo to your localhost
