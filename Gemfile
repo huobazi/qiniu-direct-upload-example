@@ -33,10 +33,8 @@ group :doc do
   gem 'sdoc', require: false
 end
 
-gem "qiniu-rs", "~> 3.4.5"
-gem "jquery-fileupload-rails", "~> 0.4.1"
-gem "zurb-foundation", "~> 4.3.1"
-
+gem 'qiniu-rs'
+gem 'qiniu_direct_uploader', path: '../qiniu_direct_uploader/'
 gem 'better_errors', group: :development
 
 # Use ActiveModel has_secure_password

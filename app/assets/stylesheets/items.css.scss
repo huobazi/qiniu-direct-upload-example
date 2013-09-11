@@ -1,44 +1,11 @@
 // Place all the styles related to the items controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-#new_item{
-  clear: both;
-}
-
-.painting {
-  border: solid 1px #CCC;
-  padding: 10px;
-  float: left;
-  margin-right: 20px;
-  margin-bottom: 20px;
-
-  .name {
-    padding-top: 5px;
-    text-align: center;
-    font-weight: bold;
-  }
-
-  .actions {
-    font-size: 10px;
-    text-align: center;
-    color: #777;
-  }
-}
-
-.upload {
-  border-top: solid 1px #CCC;
-  width: 400px;
-  padding-top: 10px;
-  margin-top: 10px;
-
-  .progress {
-    margin-top: 8px;
-    border: solid 1px #555;
-    border-radius: 3px;
-    -moz-border-radius: 3px;
-    .bar {
-      height: 10px;
-      background: #3EC144;
-    }
+.wrapper{
+  margin-left: 30px;
+  .dropzone{
+    border: solid 1px #666;
+    width: 600px;
+    padding: 30px 10px 30px 10px;
   }
 }

@@ -1,19 +1,21 @@
-<%= qiniu_uploader_form callback_url: items_path,
-  bucket: 'spec-test',
-  id: "photograph-uploader",
-  key: "{timestamp}-{unique-id}-#{SecureRandom.hex}-{filename}",
-  custom_fields: {aaa:1,bbb:2},
-  submit_button_id: 'btn',
-  store_path: "/items/#{Date.today.strftime('%Y/%m')}" do %>
-  <%= file_field_tag :file, multiple: true %>
-<% end %>
+<div class="wrapper">
+  <h1>Qiniu direct upload example</h1>
+  <div class="dropzone" id="dropzone">
+    <%= qiniu_uploader_form callback_url: items_path,
+      bucket:        'spec-test',
+      id:            "photograph-uploader",
+      key:           "{timestamp}-{unique-id}-#{SecureRandom.hex}-{filename}",
+      custom_fields: {aaa:1,bbb:2},
+      progress_bar_id: 'progress-bar',
+      drop_paste_zone_id: 'dropzone',
+      store_path:    "/items/#{Date.today.strftime('%Y/%m')}" do %>
 
-<div class="dropzone">
-  <div class="bars">xxxxxxxxxxxxxxxxx</div>
+      <div class="bars" id="progress-bar">
+        <%= file_field_tag :file, multiple: true %> You can also drag and drop files here
+      </div>
+    <% end %>
+  </div>
 </div>
-
-<button id="btn">xxxxxxxxxx</button>
-
 <script id="template-upload" type="text/x-tmpl">
   <div class="upload">
   {%=o.name%}
