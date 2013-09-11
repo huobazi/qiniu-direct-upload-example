@@ -1,4 +1,4 @@
-# QiniuDirectUploader
+# QiniuDirectUploader Example
 
 ## How to run
 
