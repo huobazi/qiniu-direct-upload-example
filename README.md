@@ -7,17 +7,18 @@ This is a example for https://github.com/huobazi/qiniu_direct_upuloader
 Please see the files
 
 ```
+config/initializers/qiniu.rb
 app/views/items/index.html.erb
 app/assets/javascripts/items.js.coffee
 app/controllers/items_controller.rb
-config/initializers/tmp.rb
 ```
 
 1. Clone the repo to your localhost
-2. Setup your Qiniu KEY to the config/initializers/tmp.rb
-3. Run
-4. Upload a image
-5. See the javascript console
+2. renme the  config/initializers/qiniu.rb.example to config/initializers/qiniu.rb
+3. Setup your Qiniu KEY to the config/initializers/qiniu.rb
+4. Run
+5. Upload a image
+6. See the javascript console
 
 see also:
 
