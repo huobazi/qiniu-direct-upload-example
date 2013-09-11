@@ -32,7 +32,7 @@ group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
 end
-
+gem 'rails_12factor'
 gem 'qiniu-rs'
 #gem 'qiniu_direct_uploader', path: '../qiniu_direct_uploader/'
 gem "qiniu_direct_uploader", "~> 0.0.1"
