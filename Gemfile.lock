@@ -30,6 +30,8 @@ GEM
     better_errors (0.9.0)
       coderay (>= 1.0.0)
       erubis (>= 2.6.6)
+    binding_of_caller (0.7.2)
+      debug_inspector (>= 0.0.1)
     builder (3.1.4)
     coderay (1.0.9)
     coffee-rails (4.0.0)
@@ -39,6 +41,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.6.3)
+    debug_inspector (0.0.2)
     erubis (2.7.0)
     execjs (1.4.0)
       multi_json (~> 1.0)
@@ -67,7 +70,7 @@ GEM
       mime-types (~> 1.19)
       rest-client (~> 1.6)
       ruby-hmac (~> 0.4)
-    qiniu_direct_uploader (0.0.2)
+    qiniu_direct_uploader (0.0.3)
       coffee-rails (>= 3.2.1)
       jquery-fileupload-rails (~> 0.4.1)
       qiniu-rs (>= 3.4.5)
@@ -136,12 +139,13 @@ PLATFORMS
 
 DEPENDENCIES
   better_errors
+  binding_of_caller
   coffee-rails (~> 4.0.0)
   jbuilder (~> 1.2)
   jquery-rails
   pg
   qiniu-rs
-  qiniu_direct_uploader (~> 0.0.2)
+  qiniu_direct_uploader (~> 0.0.3)
   rails (= 4.0.0)
   rails_12factor
   sass-rails (~> 4.0.0)

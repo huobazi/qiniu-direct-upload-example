@@ -1,4 +1,5 @@
 class ItemsController < ApplicationController
+
   def index
   end
   def create
@@ -14,4 +15,5 @@ class ItemsController < ApplicationController
 
     render json: item
   end
+
 end

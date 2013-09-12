@@ -35,8 +35,9 @@ end
 gem 'rails_12factor'
 gem 'qiniu-rs'
 #gem 'qiniu_direct_uploader', path: '../qiniu_direct_uploader/'
-gem "qiniu_direct_uploader", "~> 0.0.2"
+gem "qiniu_direct_uploader", "~> 0.0.3"
 gem 'better_errors', group: :development
+gem 'binding_of_caller'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
