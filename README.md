@@ -14,9 +14,9 @@ app/controllers/items_controller.rb
 ```
 
 1. Clone the repo to your localhost
-2. Renme the  config/initializers/qiniu.rb.example to config/initializers/qiniu.rb
+2. Rename the  config/initializers/qiniu.rb.example to config/initializers/qiniu.rb
 3. Setup your Qiniu KEY to the config/initializers/qiniu.rb
-4. Run
+4. Bundle install && Run
 5. Upload a image
 6. See the javascript console
 
