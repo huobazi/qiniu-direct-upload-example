@@ -2,7 +2,7 @@
 
 ## How to run
 
-This is a example for https://github.com/huobazi/qiniu_direct_upuloader
+This is a example for https://github.com/huobazi/qiniu_direct_uploader
 
 Please see the files
 
