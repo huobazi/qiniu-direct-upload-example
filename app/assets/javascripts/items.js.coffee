@@ -14,7 +14,7 @@ $(document).ready ->
       limitMultiFileUploads: 2
       customCallbackData: {"xyz": 100}
       onFilesAdd: (file) ->
-        if file.type != "image/jpeg"
+        if file.type != "image/jpeg" and file.type != "image/png" and file.type != "image/gif"
           alert('please select image')
           return false
         else

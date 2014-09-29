@@ -33,9 +33,8 @@ group :doc do
   gem 'sdoc', require: false
 end
 gem 'rails_12factor'
-gem 'qiniu-rs'
 #gem 'qiniu_direct_uploader', path: '../qiniu_direct_uploader/'
-gem "qiniu_direct_uploader", "~> 0.0.3"
+gem "qiniu_direct_uploader", "~> 0.0.4"
 gem 'better_errors', group: :development
 gem 'binding_of_caller'
 
