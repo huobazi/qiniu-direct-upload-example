@@ -1,6 +1,5 @@
 source 'https://rubygems.org'
 #source 'http://ruby.taobao.org'
-ruby '2.0.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0'
@@ -34,7 +33,7 @@ group :doc do
 end
 gem 'rails_12factor'
 #gem 'qiniu_direct_uploader', path: '../qiniu_direct_uploader/'
-gem "qiniu_direct_uploader", "~> 0.0.4"
+gem "qiniu_direct_uploader", "~> 0.0.5"
 gem 'better_errors', group: :development
 gem 'binding_of_caller'
 
