@@ -2,7 +2,7 @@
   <h1>Qiniu direct upload example</h1>
   <div class="dropzone" id="dropzone">
     <%= qiniu_uploader_form callback_url: items_path,
-      bucket:        'spec-test',
+      bucket:        'ftguv',
       id:            "photograph-uploader",
       key:           "items/#{Date.today.strftime('%Y/%m')}/{timestamp}-{unique-id}-#{SecureRandom.hex}-{filename}",
       custom_fields: {aaa:1,bbb:2},
