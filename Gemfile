@@ -1,20 +1,18 @@
-source 'https://rubygems.org'
-#source 'https://ruby.taobao.org'
-ruby '2.0.0'
+source 'https://gems.ruby-china.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.0'
+gem 'rails', '~> 4.2.8'
 
-gem 'pg'
+gem 'sqlite3'
 
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 4.0.0'
+gem 'sass-rails'
 
 # Use Uglifier as compressor for JavaScript assets
-gem 'uglifier', '>= 1.3.0'
+gem 'uglifier'
 
 # Use CoffeeScript for .js.coffee assets and views
-gem 'coffee-rails', '~> 4.0.0'
+gem 'coffee-rails'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
@@ -26,15 +24,16 @@ gem 'jquery-rails'
 gem 'turbolinks'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 1.2'
+gem 'jbuilder'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
 end
-gem 'rails_12factor'
-#gem 'qiniu_direct_uploader', path: '../qiniu_direct_uploader/'
-gem "qiniu_direct_uploader", "~> 0.0.4"
+
+# $ bundle config --local local.qiniu_direct_uploader /Users/guochunzhong/git/oss/qiniu_direct_uploader/
+gem "qiniu_direct_uploader", git: 'https://github.com/huobazi/qiniu_direct_uploader.git', branch: :master
+
 gem 'better_errors', group: :development
 gem 'binding_of_caller'
 
