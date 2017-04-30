@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/huobazi/qiniu_direct_uploader.git
-  revision: c87cdef365af02fd948ec15452cb0d6cbf531e72
+  revision: 67b499c6af2d8e39e4a49789c909c817f9971931
   branch: master
   specs:
     qiniu_direct_uploader (0.0.8)
