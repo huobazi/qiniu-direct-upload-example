@@ -16,3 +16,4 @@
 /log/*.log
 /tmp
 /config/initializers/qiniu.rb
+qiniu-direct-upload-example.sublime-workspace
