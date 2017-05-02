@@ -8,11 +8,12 @@ class ItemsController < ApplicationController
 
     item[:id]            = 1
     item[:file_size]     = params[:fsize]
-    item[:image]         = 'http://your-bucket-name.qiniudn.com/' + params[:key]
+    item[:image]         = 'http://your-bucket-name.qiniudn-or-your-domain.com/' + params[:key]
     item[:imageInfo]     = params[:imageInfo]
     item[:custom_fields] = params[:custom_fields]
     item[:xyz]           = params[:xyz]
 
+    Rails.logger.debug item
     render json: item
   end
 
